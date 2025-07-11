@@ -1,36 +1,33 @@
 const express = require('express');
 
 const app = express();
-// Route: matches "/ac" and "/abc"
-// app.get(/^\/ab?c$/,(req,res)=>{
-//     res.send({firstName:"Suraj",lastName:"Upadhyay"})
-// })
 
-// Route: matches "/abbbc" and "/abc"
-// app.get(/^\/ab+c$/,(req,res)=>{
-//     res.send({firstName:"Suraj",lastName:"Upadhyay"})
-// })
-
-// Route: matches "/abbbc" and "/abc" "ac"
-// app.get(/^\/ab*c$/,(req,res)=>{
-//     res.send({firstName:"Suraj",lastName:"Upadhyay"})
-// })
-
-//query
-// app.get("/user",(req,res)=>{
-//     console.log(req.query);
-//     res.send({firstName:"Suraj",lastName:"Upadhyay"});
-// })
-
-//params
-// app.get("/user/:userId",(req,res)=>{
-//     console.log(req.params);
-//     res.send({firstName:"Suraj",lastName:"Upadhyay"});
-// })
-app.get("/user/:userId/:name/:password",(req,res)=>{
-    console.log(req.params);
-    res.send({firstName:"Suraj",lastName:"Upadhyay"});
-})
-app.listen(3000,()=>{
+//app.use("/route", rh1, [rh2, rh3], rh4, 4h5)
+//app.get("/route", rh1, [rh2, rh3], rh4, 4h5)
+app.use(
+    "/user",
+    (req, res, next) => {
+        console.log("Handeling the route user 1");
+        // res.send("Response 1");
+        next();
+        // res.send("Response 1");
+    },
+    (req, res, next) => {
+        console.log("Handeling the route user 2");
+        // res.send("Response 2");
+        next();
+    },
+    (req, res, next) => {
+        console.log("Handeling the route user 3");
+        // res.send("Response 3rd");
+        next();
+    },
+    (req, res, next) => {
+        console.log("Handeling the route user 4");
+        res.send("Response 4");
+        next();
+    }
+)
+app.listen(3000, () => {
     console.log("Server is successfully listning on port 3000...")
 })
