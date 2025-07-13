@@ -27,7 +27,7 @@ app.get("/user", async (req, res) => {
         // }else{
         //     res.send(user);
         // }
-        
+
         //find - it gives the all match
         const user = await User.find({ emailId: userEmail })
         if (user.length === 0) {
@@ -46,6 +46,34 @@ app.get("/feed", async (req, res) => {
     } catch (err) {
         res.status(400).send("Something went wrong")
     }
+})
+//Delete a user from the database
+app.delete("/user", async (req,res)=>{
+    const userId = req.body.userId;
+     try {
+        // const user = await User.findByIdAndDelete({ _id: userId })
+        const user = await User.findByIdAndDelete(userId)
+        res.send("User Deleted Successfully!!");
+    } catch (err) {
+        res.status(400).send("Something went wrong")
+    }
+})
+//update data of the user
+app.patch("/user",async (req,res)=>{
+    const userId = req.body.userId;
+    const data = req.body
+    try {
+        //const user = await User.findByIdAndUpdate(userId,data, {returnDocument: "after"});
+        const user = await User.findByIdAndUpdate({_id:userId},data, {
+            returnDocument: "after",
+            runValidators: true
+        });
+        // console.log(user)
+        res.send("User updated Successfully!!");
+    } catch (err) {
+        res.status(400).send("UPDATE FAILED: "+ err.message)
+    }
+
 })
 
 conncetDB()
