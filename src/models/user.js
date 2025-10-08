@@ -53,7 +53,7 @@ const userSchema = new mongoose.Schema(
         },
         photoUrl: {
             type: String,
-            default: "https://www.bing.com/images/search?view=detailV2&ccid=w0TcjC4y&id=3EAEE0D2954752D941E01FEAE1AB90C9F86EE995&thid=OIP.w0TcjC4y9CxTrY3sitYa_AAAAA&mediaurl=https%3a%2f%2fmed.gov.bz%2fwp-content%2fuploads%2f2020%2f08%2fdummy-profile-pic.jpg&exph=400&expw=400&q=dummy+user+full+photo&simid=608044048885174364&FORM=IRPRST&ck=744D5BD6E65CC26A71686A52E2756DE7&selectedIndex=0&itb=0&idpp=overlayview&ajaxhist=0&ajaxserp=0",
+            default: "https://tse3.mm.bing.net/th/id/OIP.w0TcjC4y9CxTrY3sitYa_AAAAA?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3",
             validate(value) {
                 if (!validator.isURL(value)) {
                     throw new Error("Invalid photo URL: " + value)
